@@ -1,0 +1,36 @@
+---
+- name: Configure router interfaces for nexus
+  hosts: cisco-9k
+  connection: network_cli
+  gather_facts: no
+  become: yes
+  tasks:
+    - name: Configure Ethernet1/1
+      nxos_l3_interface:
+        name: Ethernet1/1
+        ipv4: 192.168.2.111/24
+    - name: Enable Ethernet1/1
+      nxos_interface:
+        name: Ethernet1/1
+        admin_state: up
+    - name: Configure Ethernet1/2
+      nxos_l3_interface:
+        name: Ethernet1/2
+        ipv4: 192.168.5.2/24
+    - name: Enable Ethernet1/2
+      nxos_interface:
+        name: Ethernet1/2
+        admin_state: up
+    - name: Create Access List
+      nxos_acl:
+        name: ANSIBLE
+        seq: 10
+        action: permit
+        proto: icmp
+        src: any
+        dest: any
+    - name: Apply Access List
+      nxos_acl_interface:
+        name: ANSIBLE
+        interface: Ethernet1/2
+        direction: egress
