@@ -12,3 +12,5 @@
         proto: "{{ protocol }}"
         src: "{{ source_ip }}"
         dest: "{{ destination_ip }}"
+        dest_port1: "{{ destination_port }}"
+        dest_port_op: "eq"
