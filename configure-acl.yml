@@ -1,0 +1,14 @@
+---
+- name: Configure ACL Entry
+  hosts: cisco-9k
+  connection: network_cli
+  gather_facts: no
+  become: yes
+  tasks:
+    - nxos_acl:
+        name: "{{ acl_name}}"
+        seq: "{{ sequence }}"
+        action: "{{ action }}"
+        proto: "{{ protocol }}"
+        src: "{{ source }}"
+        dest: "{{ destination }}"
