@@ -10,5 +10,5 @@
         seq: "{{ sequence }}"
         action: "{{ action }}"
         proto: "{{ protocol }}"
-        src: "{{ source }}"
-        dest: "{{ destination }}"
+        src: "{{ source_ip }}"
+        dest: "{{ destination_ip }}"
